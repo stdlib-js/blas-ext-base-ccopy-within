@@ -22,6 +22,7 @@
 
 <details>
 
+-   [`78ad2fa`](https://github.com/stdlib-js/stdlib/commit/78ad2fa5dbb12ce808dec93197d5343745ff91b8) - **docs:** normalize trailing newlines in REPL help texts [(#16420)](https://github.com/stdlib-js/stdlib/pull/16420) _(by Philipp Burckhardt)_
 -   [`362ed23`](https://github.com/stdlib-js/stdlib/commit/362ed235c69d59eb98bab5297be26b7261ed120e) - **chore:** clean-up [(#14136)](https://github.com/stdlib-js/stdlib/pull/14136) _(by Philipp Burckhardt)_
 -   [`f24cab5`](https://github.com/stdlib-js/stdlib/commit/f24cab5f78d5faed964a927a1fe873e6396219e5) - **feat:** add `blas/ext/base/ccopy-within` [(#14007)](https://github.com/stdlib-js/stdlib/pull/14007) _(by Muhammad Haris, Athan Reines)_
 
