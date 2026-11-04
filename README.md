@@ -35,14 +35,32 @@ limitations under the License.
 
 > Perform an in-place copy of elements within a single-precision complex floating-point strided array.
 
+<section class="installation">
 
+## Installation
+
+```bash
+npm install @stdlib/blas-ext-base-ccopy-within
+```
+
+Alternatively,
+
+-   To load the package in a website via a `script` tag without installation and bundlers, use the [ES Module][es-module] available on the [`esm`][esm-url] branch (see [README][esm-readme]).
+-   If you are using Deno, visit the [`deno`][deno-url] branch (see [README][deno-readme] for usage intructions).
+-   For use in Observable, or in browser/node environments, use the [Universal Module Definition (UMD)][umd] build available on the [`umd`][umd-url] branch (see [README][umd-readme]).
+
+The [branches.md][branches-url] file summarizes the available branches and displays a diagram illustrating their relationships.
+
+To view installation and usage instructions specific to each branch build, be sure to explicitly navigate to the respective README files on each branch, as linked to above.
+
+</section>
 
 <section class="usage">
 
 ## Usage
 
 ```javascript
-import ccopyWithin from 'https://cdn.jsdelivr.net/gh/stdlib-js/blas-ext-base-ccopy-within@esm/index.mjs';
+var ccopyWithin = require( '@stdlib/blas-ext-base-ccopy-within' );
 ```
 
 #### ccopyWithin( N, target, start, end, x, strideX, workspace, strideW )
@@ -50,7 +68,7 @@ import ccopyWithin from 'https://cdn.jsdelivr.net/gh/stdlib-js/blas-ext-base-cco
 Performs an in-place copy of elements within a single-precision complex floating-point strided array.
 
 ```javascript
-import Complex64Array from 'https://cdn.jsdelivr.net/gh/stdlib-js/array-complex64@esm/index.mjs';
+var Complex64Array = require( '@stdlib/array-complex64' );
 
 var x = new Complex64Array( [ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0 ] );
 var w = new Complex64Array( x.length );
@@ -73,7 +91,7 @@ The function has the following parameters:
 The `N` and stride parameters determine which elements in the strided array are accessed at runtime. For example, to copy every other element:
 
 ```javascript
-import Complex64Array from 'https://cdn.jsdelivr.net/gh/stdlib-js/array-complex64@esm/index.mjs';
+var Complex64Array = require( '@stdlib/array-complex64' );
 
 var x = new Complex64Array( [ 1.0, 2.0, 0.0, 0.0, 3.0, 4.0, 0.0, 0.0 ] );
 var w = new Complex64Array( 2 );
@@ -85,7 +103,7 @@ ccopyWithin( 2, 0, 1, 2, x, 2, w, 1 );
 Note that indexing is relative to the first index. To introduce an offset, use [`typed array`][mdn-typed-array] views.
 
 ```javascript
-import Complex64Array from 'https://cdn.jsdelivr.net/gh/stdlib-js/array-complex64@esm/index.mjs';
+var Complex64Array = require( '@stdlib/array-complex64' );
 
 // Initial array...
 var x0 = new Complex64Array( [ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0 ] );
@@ -110,7 +128,7 @@ ccopyWithin( 3, 0, 1, 3, x1, 1, w, 1 );
 Performs an in-place copy of elements within a single-precision complex floating-point strided array using alternative indexing semantics.
 
 ```javascript
-import Complex64Array from 'https://cdn.jsdelivr.net/gh/stdlib-js/array-complex64@esm/index.mjs';
+var Complex64Array = require( '@stdlib/array-complex64' );
 
 var x = new Complex64Array( [ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0 ] );
 var w = new Complex64Array( x.length );
@@ -127,7 +145,7 @@ The function has the following additional parameters:
 While [`typed array`][mdn-typed-array] views mandate a view offset based on the underlying buffer, the offset parameters support indexing semantics based on starting indices. For example, to copy elements starting from the third element:
 
 ```javascript
-import Complex64Array from 'https://cdn.jsdelivr.net/gh/stdlib-js/array-complex64@esm/index.mjs';
+var Complex64Array = require( '@stdlib/array-complex64' );
 
 var x = new Complex64Array( [ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0 ] );
 var w = new Complex64Array( 2 );
@@ -160,17 +178,12 @@ ccopyWithin.ndarray( 2, 1, 0, 1, x, 1, 2, w, 1, 0 );
 
 <!-- eslint no-undef: "error" -->
 
-```html
-<!DOCTYPE html>
-<html lang="en">
-<body>
-<script type="module">
-
-import discreteUniform from 'https://cdn.jsdelivr.net/gh/stdlib-js/random-array-discrete-uniform@esm/index.mjs';
-import Complex64Array from 'https://cdn.jsdelivr.net/gh/stdlib-js/array-complex64@esm/index.mjs';
-import logEach from 'https://cdn.jsdelivr.net/gh/stdlib-js/console-log-each@esm/index.mjs';
-import zeros from 'https://cdn.jsdelivr.net/gh/stdlib-js/array-zeros@esm/index.mjs';
-import ccopyWithin from 'https://cdn.jsdelivr.net/gh/stdlib-js/blas-ext-base-ccopy-within@esm/index.mjs';
+```javascript
+var discreteUniform = require( '@stdlib/random-array-discrete-uniform' );
+var Complex64Array = require( '@stdlib/array-complex64' );
+var logEach = require( '@stdlib/console-log-each' );
+var zeros = require( '@stdlib/array-zeros' );
+var ccopyWithin = require( '@stdlib/blas-ext-base-ccopy-within' );
 
 var xbuf = discreteUniform( 20, 0, 500, {
     'dtype': 'float32'
@@ -182,10 +195,6 @@ var w = zeros( 10, 'complex64' );
 
 ccopyWithin( 10, 5, 0, 3, x, 1, w, 1 );
 logEach( '%s', x );
-
-</script>
-</body>
-</html>
 ```
 
 </section>
@@ -194,7 +203,150 @@ logEach( '%s', x );
 
 <!-- C interface documentation. -->
 
+* * *
 
+<section class="c">
+
+## C APIs
+
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+
+<section class="intro">
+
+</section>
+
+<!-- /.intro -->
+
+<!-- C usage documentation. -->
+
+<section class="usage">
+
+### Usage
+
+```c
+#include "stdlib/blas/ext/base/ccopy_within.h"
+```
+
+<!-- lint disable maximum-heading-length -->
+
+#### stdlib_strided_ccopy_within( N, target, start, end, \*X, strideX, \*W, strideW )
+
+<!-- lint enable maximum-heading-length -->
+
+Performs an in-place copy of elements within a single-precision complex floating-point strided array.
+
+```c
+#include "stdlib/complex/float32/ctor.h"
+
+float x[] = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, 8.0f };
+float w[ 8 ];
+
+stdlib_strided_ccopy_within( 4, 2, 0, 2, (stdlib_complex64_t *)x, 1, (stdlib_complex64_t *)w, 1 );
+```
+
+The function accepts the following arguments:
+
+-   **N**: `[in] CBLAS_INT` number of indexed elements.
+-   **target**: `[in] CBLAS_INT` target index.
+-   **start**: `[in] CBLAS_INT` source start index (inclusive).
+-   **end**: `[in] CBLAS_INT` source end index (exclusive).
+-   **X**: `[inout] stdlib_complex64_t*` input array.
+-   **strideX**: `[in] CBLAS_INT` stride length for `X`.
+-   **W**: `[out] stdlib_complex64_t*` workspace array. Must have at least `N` indexed elements.
+-   **strideW**: `[in] CBLAS_INT` stride length for `W`.
+
+```c
+void stdlib_strided_ccopy_within( const CBLAS_INT N, const CBLAS_INT target, const CBLAS_INT start, const CBLAS_INT end, stdlib_complex64_t *X, const CBLAS_INT strideX, stdlib_complex64_t *W, const CBLAS_INT strideW );
+```
+
+<!-- lint disable maximum-heading-length -->
+
+#### stdlib_strided_ccopy_within_ndarray( N, target, start, end, \*X, strideX, offsetX, \*W, strideW, offsetW )
+
+<!-- lint enable maximum-heading-length -->
+
+Performs an in-place copy of elements within a single-precision complex floating-point strided array using alternative indexing semantics.
+
+```c
+#include "stdlib/complex/float32/ctor.h"
+
+float x[] = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, 8.0f };
+float w[ 8 ];
+
+stdlib_strided_ccopy_within_ndarray( 3, 2, 0, 2, (stdlib_complex64_t *)x, 1, 1, (stdlib_complex64_t *)w, 1, 0 );
+```
+
+The function accepts the following arguments:
+
+-   **N**: `[in] CBLAS_INT` number of indexed elements.
+-   **target**: `[in] CBLAS_INT` target index.
+-   **start**: `[in] CBLAS_INT` source start index (inclusive).
+-   **end**: `[in] CBLAS_INT` source end index (exclusive).
+-   **X**: `[inout] stdlib_complex64_t*` input array.
+-   **strideX**: `[in] CBLAS_INT` stride length for `X`.
+-   **offsetX**: `[in] CBLAS_INT` starting index for `X`.
+-   **W**: `[out] stdlib_complex64_t*` workspace array. Must have at least `N` indexed elements.
+-   **strideW**: `[in] CBLAS_INT` stride length for `W`.
+-   **offsetW**: `[in] CBLAS_INT` starting index for `W`.
+
+```c
+void stdlib_strided_ccopy_within_ndarray( const CBLAS_INT N, const CBLAS_INT target, const CBLAS_INT start, const CBLAS_INT end, stdlib_complex64_t *X, const CBLAS_INT strideX, const CBLAS_INT offsetX, stdlib_complex64_t *W, const CBLAS_INT strideW, const CBLAS_INT offsetW );
+```
+
+</section>
+
+<!-- /.usage -->
+
+<!-- C API usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+
+<section class="notes">
+
+</section>
+
+<!-- /.notes -->
+
+<!-- C API usage examples. -->
+
+<section class="examples">
+
+### Examples
+
+```c
+#include "stdlib/blas/ext/base/ccopy_within.h"
+#include "stdlib/complex/float32/ctor.h"
+#include <stdio.h>
+
+int main( void ) {
+    // Create a strided array:
+    float x[] = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, 8.0f };
+
+    // Create a workspace array:
+    float w[ 8 ];
+
+    // Specify the number of indexed elements:
+    const int N = 4;
+
+    // Specify strides:
+    const int strideX = 1;
+    const int strideW = 1;
+
+    // Copy elements:
+    stdlib_strided_ccopy_within( N, 2, 0, 2, (stdlib_complex64_t *)x, strideX, (stdlib_complex64_t *)w, strideW );
+
+    // Print the result:
+    for ( int i = 0; i < 8; i += 2 ) {
+        printf( "x[ %i ] = %f + %fi\n", i/2, x[ i ], x[ i+1 ] );
+    }
+}
+```
+
+</section>
+
+<!-- /.examples -->
+
+</section>
+
+<!-- /.c -->
 
 <!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
 
@@ -213,7 +365,7 @@ logEach( '%s', x );
 
 ## Notice
 
-This package is part of [stdlib][stdlib], a standard library with an emphasis on numerical and scientific computing. The library provides a collection of robust, high performance libraries for mathematics, statistics, streams, utilities, and more.
+This package is part of [stdlib][stdlib], a standard library for JavaScript and Node.js, with an emphasis on numerical and scientific computing. The library provides a collection of robust, high performance libraries for mathematics, statistics, streams, utilities, and more.
 
 For more information on the project, filing bug reports and feature requests, and guidance on how to develop [stdlib][stdlib], see the main project [repository][stdlib].
 
@@ -276,7 +428,7 @@ Copyright &copy; 2016-2026. The Stdlib [Authors][stdlib-authors].
 
 [stdlib-license]: https://raw.githubusercontent.com/stdlib-js/blas-ext-base-ccopy-within/main/LICENSE
 
-[@stdlib/array/complex64]: https://github.com/stdlib-js/array-complex64/tree/esm
+[@stdlib/array/complex64]: https://github.com/stdlib-js/array-complex64
 
 [mdn-typed-array]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray
 
